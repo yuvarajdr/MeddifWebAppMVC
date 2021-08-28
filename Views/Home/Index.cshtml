@@ -1,0 +1,67 @@
+﻿@model List<StudentModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@* ----------- View all ----------- *@
+<h1>View All</h1>
+@foreach (var ite in Model)
+{<table style="border-block: double; width: 100% "><thead><tr><td>RollNo</td><td>Name</td><td>Age</td><td>Gender</td></tr></thead>
+        <tr>
+            <td>RollNo: @ite.RollNo</td>
+
+            <td>Name: @ite.Name</td>
+
+        <td>Gender: @ite.Gender</td>
+
+            <td>Age: @ite.Age</td>
+        </tr>
+</table>
+}
+
+
+
+@* ----------- Add/Update new Person ----------- *@
+<h1>Add or Update Person</h1>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    StudentModel person = new StudentModel();
+    <label asp-for="@person.RollNo">ID</label>
+    <br />
+    <input type="text" asp-for="@person.RollNo" name="RollNo" />
+    <br />
+    <br />
+    <label asp-for="@person.Name">Name</label>
+    <br />
+    <input type="text" asp-for="@person.Name" name="Name" />
+    <br />
+    <br />
+    <label asp-for="@person.Age">Age</label>
+    <br />
+    <input type="text" asp-for="@person.Age" name="Age" />
+    <br />
+    <br />
+    <label asp-for="@person.Gender">Gender</label>
+    <br />
+    <input type="text" asp-for="@person.Gender" name="Gender" />
+    <br />
+    <br />
+
+    <button type="submit">Add/Update</button>
+}
+
+@* ----------- Delete Person ----------- *@
+<h1>Delete Person</h1>
+@using (Html.BeginForm("Delete", "Home", FormMethod.Post))
+{
+    StudentModel person = new StudentModel();
+    <label asp-for="@person.RollNo">ID</label>
+    <br />
+    <input type="text" asp-for="@person.RollNo" name="Id" />
+    <br />
+    <button type="submit" name="submit">Delete</button>
+}
